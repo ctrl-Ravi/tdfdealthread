@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - TDFDealThread</title>
+    <style>
+        :root {
+            --primary-color: #ff4500;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .policy-content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: #222;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: #111;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+            }
+            .policy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Privacy Policy for TDFDealThread</h1>
+            <div class="last-updated">Last Updated: August 13, 2026</div>
+        </div>
+
+        <div class="policy-content">
+            <p>TDFDealThread ("we", "our", or "the App") is a free moderator utility built on the Reddit Developer Platform (Devvit). This Privacy Policy explains how we collect, use, and store information when you use the App within Reddit.</p>
+
+            <h2>1. Information We Access and Collect</h2>
+            <p>When a post is submitted to a subreddit where TDFDealThread is installed, the App automatically receives and processes the following Reddit User Content:</p>
+            <ul>
+                <li><strong>Post Title and Body</strong></li>
+                <li><strong>Post URL and Permalink</strong></li>
+                <li><strong>Post Flair and Images</strong></li>
+                <li><strong>Post Creation Date</strong></li>
+            </ul>
+
+            <h2>2. How We Use Your Information (Purpose)</h2>
+            <p>TDFDealThread uses this information strictly for the purpose of identifying and compiling deals into a daily "Megathread" within the same subreddit. The App maintains a link to your original Reddit post to correctly attribute your content according to Reddit Developer Terms, without storing or displaying your Reddit username.</p>
+            
+            <p>We <strong>do not</strong> use this information for:</p>
+            <ul>
+                <li>Analytics or profiling</li>
+                <li>AI or Machine Learning training</li>
+                <li>Advertising or marketing</li>
+                <li>Affiliate link tracking or monetization</li>
+            </ul>
+
+            <h2>3. Data Storage and Retention</h2>
+            <p>All information accessed by TDFDealThread remains strictly within Reddit's infrastructure (Devvit Redis and Reddit Posts/Comments). Data is completely isolated by subreddit.</p>
+            <ul>
+                <li><strong>Copied Comments:</strong> When a deal is copied into a Megathread comment, it remains there as long as the Megathread exists.</li>
+                <li><strong>Operational Queue:</strong> Temporary deal data (User Content) stored for processing and manual moderation is automatically deleted (TTL expires) after <strong>3 days (72 hours)</strong>.</li>
+                <li><strong>Deduplication Data:</strong> Post IDs are stored for up to 30 days solely to prevent processing duplicate deals.</li>
+            </ul>
+
+            <h2>4. Deletion of User Content</h2>
+            <p>We respect your right to delete your content.</p>
+            <ul>
+                <li>If you delete your original deal post, TDFDealThread will automatically detect the deletion and securely delete the copied comment from the Megathread as soon as possible.</li>
+                <li>The corresponding data in the operational queue will also be scrubbed.</li>
+            </ul>
+
+            <h2>5. Third-Party Sharing</h2>
+            <p><strong>None.</strong> TDFDealThread does not transmit, sell, or share Reddit User Content with any external servers, third-party services, or external APIs. All data processing occurs internally on Reddit's Developer Platform.</p>
+
+            <h2>6. Security</h2>
+            <p>Your data is protected by Reddit's underlying infrastructure and security protocols. TDFDealThread uses atomic operations to safely process data and enforces strict moderator authorization checks for all management actions.</p>
+
+            <h2>7. User Deletion Requests & Contact</h2>
+            <p>If you have questions about this Privacy Policy, or if you need to request the manual modification or deletion of your content copied by the App, please contact the moderation team of the subreddit where the deal was posted (e.g., via Modmail), as they have direct tools to remove Megathread comments.</p>
+            <p>For technical support or developer inquiries, you can reach out via Modmail to the subreddit where this application is actively maintained or deployed.</p>
+        </div>
+        
+        <div class="footer">
+            &copy; 2026 TDFDealThread
+        </div>
+    </div>
+</body>
+</html>
