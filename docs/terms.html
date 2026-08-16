@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - TDFDealThread</title>
+    <link rel="canonical" href="https://ctrl-ravi.github.io/tdfdealthread/terms.html">
+    <style>
+        :root {
+            --primary-color: #ff4500;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .policy-content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: #222;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: #111;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+            }
+            .policy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Terms and Conditions for TDFDealThread</h1>
+            <div class="last-updated">Last Updated: August 16, 2026</div>
+        </div>
+
+        <div class="policy-content">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By installing or using TDFDealThread ("the App"), you agree to these Terms and Conditions. The App is a free, non-commercial moderation utility built on the Reddit Developer Platform (Devvit). If you do not agree to these terms, you may not use the App.</p>
+
+            <h2>2. Description of TDFDealThread</h2>
+            <p>TDFDealThread is a community moderation tool designed to aggregate deals from a subreddit into a daily Megathread. It automatically detects specified retailer links or keywords, queues them, and publishes them as comments in a consolidated daily post to reduce subreddit clutter.</p>
+
+            <h2>3. Eligibility and Reddit Account Requirements</h2>
+            <p>To use this App, you must have a valid Reddit account and hold active moderator permissions on the subreddit where the App is installed. Your use of the App is subject to your continuous compliance with Reddit's User Agreement and Developer Terms.</p>
+
+            <h2>4. Moderator Responsibilities</h2>
+            <p>Moderators are solely responsible for managing the content curated by the App. You agree to use the App in accordance with Reddit’s Content Policy and your subreddit's rules. TDFDealThread simply automates the aggregation of content submitted by users to your community.</p>
+
+            <h2>5. Automated Deal Processing</h2>
+            <p>The App scans incoming submissions for recognized keywords or URLs and automatically queues them for publishing. This processing relies on the Reddit API and Devvit triggers, which may experience temporary latency or errors beyond our control.</p>
+
+            <h2>6. User-Generated Reddit Content</h2>
+            <p>TDFDealThread processes existing Reddit User Content (such as post titles, bodies, flairs, and URLs). We do not claim ownership of any User Content. All content aggregated by the App belongs to the original posters in accordance with Reddit's terms.</p>
+
+            <h2>7. Content Deletion and Source Post Deletion</h2>
+            <p>If an original source post is deleted by its author or removed by a moderator, the App is designed to automatically detect this deletion and securely remove the copied comment from the Megathread as soon as possible. Moderators also retain full manual control to delete active deal comments via the App's management interface.</p>
+
+            <h2>8. Image / Megathread Customization</h2>
+            <p>Moderators may upload custom images for the daily Megathread. You are solely responsible for ensuring you have the rights to use any uploaded imagery, and that such imagery complies with Reddit’s Content Policy.</p>
+
+            <h2>9. Data Storage and Retention</h2>
+            <p>The App stores operational data securely within Reddit's Devvit Redis infrastructure, completely isolated per-subreddit. Temporary deal queues are purged after 3 days (72 hours), while deduplication metadata (such as post IDs) is stored for 30 days to prevent duplicate processing.</p>
+
+            <h2>10. Privacy</h2>
+            <p>Your privacy is important to us. TDFDealThread minimizes data collection, does not store or display Reddit usernames, and does not share data with any external third parties. For full details on how data is handled, please read our <a href="https://ctrl-ravi.github.io/tdfdealthread/privacy-policy.html">Privacy Policy</a>.</p>
+
+            <h2>11. Acceptable Use</h2>
+            <p>You agree to use TDFDealThread strictly for its intended purpose of subreddit moderation. You may not attempt to reverse engineer, disrupt, or bypass the security or rate limits of the App.</p>
+
+            <h2>12. No Spam or Abuse</h2>
+            <p>The App must not be used to facilitate spam, harassment, or to circumvent Reddit’s automation rules. The App includes built-in batching and rate-limit handling, and attempting to force the App to spam your subreddit will result in removal of the App.</p>
+
+            <h2>13. Service Availability and Changes</h2>
+            <p>TDFDealThread is provided "as is" and "as available". Because the App operates on the Reddit Developer Platform, its uptime is entirely dependent on Reddit's infrastructure. We do not guarantee uninterrupted service and reserve the right to modify or discontinue the App at any time without notice.</p>
+
+            <h2>14. Disclaimer</h2>
+            <p>The App is provided without any warranties, express or implied. We do not warrant that the App will be error-free or perfectly synchronize with Reddit's API under all edge cases.</p>
+
+            <h2>15. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, the developer(s) of TDFDealThread shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the App, including but not limited to lost data, missed deals, or temporary subreddit disruption.</p>
+
+            <h2>16. Termination / Removal of App</h2>
+            <p>You may uninstall TDFDealThread from your subreddit at any time. We reserve the right to revoke access to the App if you violate these Terms or Reddit's Developer Terms.</p>
+
+            <h2>17. Changes to These Terms</h2>
+            <p>We may update these Terms and Conditions periodically to reflect updates to the App or changes in Reddit's platform policies. Continued use of the App following an update constitutes acceptance of the new Terms.</p>
+
+            <h2>18. Contact / Deletion Requests</h2>
+            <p>If you have questions about these Terms, or if a user needs to request the manual modification or deletion of content copied by the App, they should contact the moderation team of the subreddit where the deal was posted. For technical support, contact the subreddit where this application is actively maintained via Modmail.</p>
+
+            <h2>19. Reddit Platform Relationship</h2>
+            <p><strong>TDFDealThread is an independent third-party application. It is not operated, endorsed, sponsored, or verified by Reddit, Inc.</strong> Users and moderators must continue to comply with all official Reddit Terms of Service, Content Policies, and Developer Terms.</p>
+
+        </div>
+        
+        <div class="footer">
+            &copy; 2026 TDFDealThread
+        </div>
+    </div>
+</body>
+</html>
