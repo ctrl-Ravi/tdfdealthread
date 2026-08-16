@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "tdfdealthread",
+  "post": {
+    "entrypoints": {
+      "default": {
+        "entry": "splash.html"
+      },
+      "manage": {
+        "entry": "manage.html"
+      }
+    }
+  },
+  "permissions": {
+    "media": true
+  },
+  "server": {},
+  "menu": {
+    "items": [
+      {
+        "label": "🛠️ Manage Today's Megathread",
+        "description": "Moderator management interface",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/on/menu/manage"
+      }
+    ]
+  },
+  "triggers": {
+    "onAppInstall": "/internal/on/app/install",
+    "onPostSubmit": "/internal/on/post/submit",
+    "onPostDelete": "/internal/on/post/delete"
+  },
+  "scheduler": {
+    "tasks": {
+      "populateComments": "/internal/job/populateComments"
+    }
+  },
+  "scripts": {
+    "dev": "npm run watch"
+  }
+}
