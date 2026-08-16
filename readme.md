@@ -50,7 +50,7 @@ TDFDealThread does not hoard data. The operational queue that stores copied deal
 If a user deletes their original Reddit post, TDFDealThread's `onPostDelete` trigger detects this and automatically deletes the copied comment from the Megathread, ensuring User Content is respected as soon as possible.
 
 ## Privacy Policy
-TDFDealThread is fully compliant with Reddit Developer Policies. All data processing occurs on Reddit's servers. We do not sell data or monetize the app. See [PRIVACY_POLICY.md](./PRIVACY_POLICY.md) for full details.
+TDFDealThread is fully compliant with Reddit Developer Policies. All data processing occurs on Reddit's servers. We do not sell data or monetize the app. See the [Privacy Policy](https://ctrl-ravi.github.io/tdfdealthread/privacy-policy.html) for full details.
 
 ## Support / deletion requests
 If you need a deal comment removed manually, or have questions about the application, please send a Modmail to the moderators of the subreddit where the app is installed. They have full control to manage or delete any copied content.
