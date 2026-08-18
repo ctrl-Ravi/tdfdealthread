@@ -87,9 +87,9 @@ export function buildMegathreadTitle(friendlyDate: string, dateStr: string): str
   return (templates[idx] ?? templates[0] ?? '').replace('{DATE}', friendlyDate);
 }
 
-export function buildMegathreadBody(friendlyDate: string, dealCount: number, lastUpdateDate: Date): string {
+export function buildMegathreadBody(subredditName: string, friendlyDate: string, dealCount: number, lastUpdateDate: Date): string {
   // formatFriendlyTime returns e.g. '11:01 AM IST'
-  return `🗂️ **TODAY'S DEAL COLLECTION**\n\nWelcome to the **TopDealsFinder Daily Deals** thread.\n\nEvery deal posted by TopDealsFinder on **${friendlyDate}** will be collected and archived in the comments below, giving you one place to browse all of today's deals.\n\n🛍️ **${dealCount} deals archived so far**\n\n🕐 **Last updated: ${formatFriendlyTime(lastUpdateDate)}**\n\n👇 **Check the comments for the complete deal archive.**\n\n🔄 **New deals will be added throughout the day.**`;
+  return `🗂️ **TODAY'S DEAL COLLECTION**\n\nWelcome to the **${subredditName} Daily Deals** thread.\n\nEvery deal posted by ${subredditName} on **${friendlyDate}** will be collected and archived in the comments below, giving you one place to browse all of today's deals.\n\n🛍️ **${dealCount} deals archived so far**\n\n🕐 **Last updated: ${formatFriendlyTime(lastUpdateDate)}**\n\n👇 **Check the comments for the complete deal archive.**\n\n🔄 **New deals will be added throughout the day.**`;
 }
 
 export function formatDealComment(deal: QueuedDeal): string {
@@ -109,7 +109,7 @@ export function formatDealComment(deal: QueuedDeal): string {
 
   const permalinkPart = permalink ? `\n\n🔗 Original Reddit Post:\n${permalink}` : '';
 
-  return `${title}${bodyPart}${imagePart}${flairPart}\n\n🕐 ${dealTime}${permalinkPart}`;
+  return `${title}${imagePart}${bodyPart}${flairPart}\n\n🕐 ${dealTime}${permalinkPart}`;
 }
 
 function parseTextWithStyles(c: any, raw: string) {
@@ -232,11 +232,11 @@ export function buildRichTextComment(deal: QueuedDeal, uploadedMediaUrl: string)
   const rt = new RichTextBuilder();
   rt.paragraph(c => c.text({ text: deal.title || 'Untitled Deal' }));
 
+  rt.paragraph(c => c.image({ mediaUrl: uploadedMediaUrl }));
+
   if (deal.body) {
     parseMarkdownToRichText(rt, deal.body);
   }
-
-  rt.paragraph(c => c.image({ mediaUrl: uploadedMediaUrl }));
 
   const flair = deal.flair?.trim();
   if (flair) {
@@ -285,7 +285,7 @@ export async function ensureDailyMegathread(subreddit: string, dateStr: string, 
 
   const friendlyDate = formatFriendlyDate(dateObj);
   const title = buildMegathreadTitle(friendlyDate, dateStr);
-  const text = buildMegathreadBody(friendlyDate, initialCount, lastDealDate);
+  const text = buildMegathreadBody(subreddit, friendlyDate, initialCount, lastDealDate);
 
   const todayImageMedia = await redis.get(`subreddit:${safeSub}:megathread:${dateStr}:image`);
   const defaultImageMedia = await redis.get(`subreddit:${safeSub}:megathread:default-image-media`);
@@ -324,7 +324,7 @@ export async function updateMegathreadBody(subreddit: string, dateStr: string, m
   const dateObj = new Date(Date.UTC(yyyy, mm - 1, dd));
 
   const friendlyDate = formatFriendlyDate(dateObj);
-  const text = buildMegathreadBody(friendlyDate, dailyDealCount, latestDealTime);
+  const text = buildMegathreadBody(subreddit, friendlyDate, dailyDealCount, latestDealTime);
 
   const post = await reddit.getPostById(megathreadId as any);
 

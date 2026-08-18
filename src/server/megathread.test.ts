@@ -13,16 +13,30 @@ test('Megathread title formatting', () => {
 
 test('Megathread body formatting', () => {
   const d = new Date('2026-08-09T14:00:00Z');
-  const body = buildMegathreadBody('August 9, 2026', 5, d);
+  const body = buildMegathreadBody('TopDealsFinder', 'August 9, 2026', 5, d);
   assert.ok(body.includes('🗂️ **TODAY\'S DEAL COLLECTION**'));
   assert.ok(body.includes('Every deal posted by TopDealsFinder on **August 9, 2026**'));
   assert.ok(body.includes('🛍️ **5 deals archived so far**'));
   assert.ok(body.includes('🕐 **Last updated: 7:30 PM IST**'));
   assert.ok(body.includes('👇 **Check the comments for the complete deal archive.**'));
   assert.ok(body.includes('🔄 **New deals will be added throughout the day.**'));
-  
-  const body6 = buildMegathreadBody('August 9, 2026', 6, d);
+
+  const body6 = buildMegathreadBody('TopDealsFinder', 'August 9, 2026', 6, d);
   assert.ok(body6.includes('🛍️ **6 deals archived so far**'));
+});
+
+test('Megathread body formatting - dynamic subreddit names', () => {
+  const d = new Date('2026-08-09T14:00:00Z');
+
+  const bodyDealsIndia = buildMegathreadBody('DealsIndia', 'August 9, 2026', 5, d);
+  assert.ok(bodyDealsIndia.includes('Welcome to the **DealsIndia Daily Deals** thread.'));
+  assert.ok(bodyDealsIndia.includes('Every deal posted by DealsIndia on **August 9, 2026**'));
+  assert.ok(!bodyDealsIndia.includes('TopDealsFinder'), 'Should not contain TopDealsFinder when installed in DealsIndia');
+
+  const bodyTelegram = buildMegathreadBody('telegramautopost_dev', 'August 9, 2026', 5, d);
+  assert.ok(bodyTelegram.includes('Welcome to the **telegramautopost_dev Daily Deals** thread.'));
+  assert.ok(bodyTelegram.includes('Every deal posted by telegramautopost_dev on **August 9, 2026**'));
+  assert.ok(!bodyTelegram.includes('TopDealsFinder'), 'Should not contain TopDealsFinder when installed in telegramautopost_dev');
 });
 
 test('Deal comment formatting', () => {
@@ -46,7 +60,7 @@ test('Deal comment formatting', () => {
   assert.ok(text.includes('🏷️ Flair: Electronics'), 'Should contain flair');
   assert.ok(text.includes('🕐 6:05 PM IST'), 'Should contain post time');
   assert.ok(text.includes('🔗 Original Reddit Post:\nhttps://www.reddit.com/r/TopDealsFinder/comments/123/'), 'Should contain permalink');
-  
+
   assert.ok(!text.includes('🏪 Retailer: Amazon'), 'Should NOT contain retailer');
   assert.ok(!text.includes('🛒 Deal Link:'), 'Should NOT contain deal link literal');
 });
@@ -99,12 +113,75 @@ test('Deal comment formatting - with image and flair', () => {
   const text = formatDealComment(deal);
   assert.ok(text.includes('🖼️ [View Deal Image](https://i.redd.it/test.jpg)'), 'Should contain image representation');
   assert.ok(text.includes('🏷️ Flair: Electronics'), 'Should contain flair');
-  
+
   // Verify order: title -> image -> flair
   const titleIdx = text.indexOf('Image Deal');
   const imgIdx = text.indexOf('🖼️ [View Deal Image]');
   const flairIdx = text.indexOf('🏷️ Flair:');
   assert.ok(titleIdx < imgIdx && imgIdx < flairIdx, 'Order must be title, image, flair');
+});
+
+test('Deal comment formatting - full order with image', () => {
+  const deal: QueuedDeal = {
+    postId: 't3_fullimg',
+    subreddit: 'TopDealsFinder',
+    title: 'Header Deal',
+    body: 'Body text here',
+    retailer: 'Amazon',
+    detectionMethod: 'keyword',
+    matchedValue: 'amazon',
+    flair: 'Electronics',
+    imageUrl: 'https://i.redd.it/test.jpg',
+    createdAt: 1000000000,
+    permalink: '/r/test/comments/123/'
+  };
+
+  const text = formatDealComment(deal);
+
+  const titleIdx = text.indexOf('Header Deal');
+  const imgIdx = text.indexOf('🖼️ [View Deal Image]');
+  const bodyIdx = text.indexOf('Body text here');
+  const flairIdx = text.indexOf('🏷️ Flair: Electronics');
+  const timeIdx = text.indexOf('🕐');
+  const linkIdx = text.indexOf('🔗 Original Reddit Post');
+
+  assert.ok(titleIdx !== -1, 'Missing title');
+  assert.ok(imgIdx !== -1, 'Missing image');
+  assert.ok(bodyIdx !== -1, 'Missing body');
+  assert.ok(flairIdx !== -1, 'Missing flair');
+  assert.ok(timeIdx !== -1, 'Missing time');
+  assert.ok(linkIdx !== -1, 'Missing link');
+  assert.ok(!text.includes('u/'), 'Username should not be present');
+
+  assert.ok(titleIdx < imgIdx && imgIdx < bodyIdx && bodyIdx < flairIdx && flairIdx < timeIdx && timeIdx < linkIdx, 'Order must be title -> image -> body -> flair -> time -> link');
+});
+
+test('Deal comment formatting - full order without image', () => {
+  const deal: QueuedDeal = {
+    postId: 't3_fullnoimg',
+    subreddit: 'TopDealsFinder',
+    title: 'Header Deal',
+    body: 'Body text here',
+    retailer: 'Amazon',
+    detectionMethod: 'keyword',
+    matchedValue: 'amazon',
+    flair: 'Electronics',
+    createdAt: 1000000000,
+    permalink: '/r/test/comments/123/'
+  };
+
+  const text = formatDealComment(deal);
+
+  const titleIdx = text.indexOf('Header Deal');
+  const imgIdx = text.indexOf('🖼️ [View Deal Image]');
+  const bodyIdx = text.indexOf('Body text here');
+  const flairIdx = text.indexOf('🏷️ Flair: Electronics');
+  const timeIdx = text.indexOf('🕐');
+  const linkIdx = text.indexOf('🔗 Original Reddit Post');
+
+  assert.strictEqual(imgIdx, -1, 'Image should be completely omitted');
+  assert.ok(titleIdx < bodyIdx && bodyIdx < flairIdx && flairIdx < timeIdx && timeIdx < linkIdx, 'Order must be title -> body -> flair -> time -> link');
+  assert.ok(!text.includes('u/'), 'Username should not be present');
 });
 
 test('Deal comment formatting - image extraction failure fallback (no image)', () => {
@@ -154,19 +231,19 @@ test('buildRichTextComment - Image + Markdown body: body formatting preserved', 
 
   const rt: any = buildRichTextComment(deal, 'https://i.redd.it/mock.jpg');
   const jsonStr = rt.build();
-  
+
   assert.ok(jsonStr.includes('RichText Deal'), 'Should include title');
   assert.ok(jsonStr.includes('https://i.redd.it/mock.jpg'), 'Should include native image');
   assert.ok(jsonStr.includes('Books'), 'Should include flair');
-  
+
   // Link
   assert.ok(jsonStr.includes('"u":"https://amzn-to.co/knflmQ"'), 'Link URL preserved');
   assert.ok(jsonStr.includes('"t":"https://amzn-to.co/knflmQ"'), 'Link text preserved');
-  
+
   // Bold and Italic formatting elements
   assert.ok(jsonStr.includes('[1,'), 'Contains bold formatting');
   assert.ok(jsonStr.includes('[2,'), 'Contains italic formatting');
-  
+
   // List
   assert.ok(jsonStr.includes('"e":"list"'), 'Contains list element');
 });
