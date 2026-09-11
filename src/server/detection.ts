@@ -24,7 +24,7 @@ const RETAILERS: RetailerConfig[] = [
   {
     name: 'Flipkart',
     keywords: ['flipkart'],
-    domains: ['flipkart.com', 'fkrt.it', 'fkrt.store', 'fkrt.cc', 'fkrt.co'],
+    domains: ['flipkart.com', 'fkrt.it', 'fkrt.store', 'fkrt.cc', 'fkrt.co', 'fkrt.to', 'fkrt.site', 'fkrt.in'],
   },
   {
     name: 'Myntra',
@@ -34,7 +34,12 @@ const RETAILERS: RetailerConfig[] = [
   {
     name: 'Ajio',
     keywords: ['ajio'],
-    domains: ['ajio.com', 'ajiio.store'],
+    domains: ['ajio.com', 'ajiio.store', 'ajio.me'],
+  },
+  {
+    name: 'Shopsy',
+    keywords: ['shopsy'],
+    domains: ['shopsy.in'],
   },
   {
     name: 'Meesho',
